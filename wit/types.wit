@@ -1,0 +1,23 @@
+interface types {
+    // milliseconds is the u32 number of milliseconds
+    type milliseconds = u32;
+
+    /// Errors that can be returned from the locker
+    variant error {
+        /// not-acquired error indicates the lock was not acquired because it has already been 
+        /// acquired by another entity.
+        not-acquired(string),
+        /// already-released error indicates the lease for the lock has already expired.
+        lease-expired(string),
+        /// already-released error indicates the lease for the loack has already been released.
+        already-released(string),
+        /// unknown indicates an unexpected error occurred when acquiring or releasing a lock
+        unknown(string),
+    };
+
+    /// lock resource is a handle to a named lease which can be released when work is completed.
+    resource lock {
+        /// release the lease for this lock. This can only be called once.
+        release: func() -> result<_, error>;
+    }
+}

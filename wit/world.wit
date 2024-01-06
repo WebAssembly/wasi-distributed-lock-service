@@ -1,0 +1,5 @@
+package wasi:distributed-lock@0.1.0
+
+world imports {
+    import locker;
+}
