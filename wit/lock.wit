@@ -1,0 +1,8 @@
+/// locker interface provides the ability to acquire locks
+interface locker {
+    use types.{milliseconds, error, lock};
+
+    /// acquire will attempt to obtain a lease for a given string key for a time to live (ttl)
+    /// in milliseconds.
+    acquire: func(key: string, ttl: milliseconds) -> result<lock, error>;
+}
